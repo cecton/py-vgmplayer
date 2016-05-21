@@ -17,7 +17,6 @@
 UINT8 CmdList[0x100]; // used by VGMPlay.c and VGMPlay_AddFmts.c
 bool ErrorHappened;   // used by VGMPlay.c and VGMPlay_AddFmts.c
 extern VGM_HEADER VGMHead;
-extern UINT32 SampleRate;
 extern UINT32 VGMMaxLoop;
 extern UINT32 FadeTime;
 extern bool EndPlay;
@@ -47,7 +46,7 @@ PyMODINIT_FUNC PyInit__libvgm(void)
     return PyModule_Create(&_libvgm);
 }
 
-int play(char *filepath, int out_fd, int count) {
+int play(char *filepath, int out_fd, UINT32 SampleRate, int count) {
     UINT8 result;
     WAVE_16BS *sampleBuffer;
     UINT32 bufferedLength;
